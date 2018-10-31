@@ -34,15 +34,22 @@ $(function() {
         it('urls are defined', function() {
             allFeeds.forEach(obj=>{
                 expect(obj.url).toBeDefined();
-                expect(obj.url).not.toBe(0);
+                expect(obj.url.length).not.toBe(0);
             })
         });
 
 
-        /* TODO: Write a test that loops through each feed
+        /* DONE: Write a test that loops through each feed
          * in the allFeeds object and ensures it has a name defined
          * and that the name is not empty.
          */
+        it('names are defined', function() {
+            allFeeds.forEach(obj=>{
+                expect(obj.name).toBeDefined();
+                expect(obj.name.length).not.toBe(0);
+            })
+        });
+        
 
     });
 
