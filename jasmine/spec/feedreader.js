@@ -93,30 +93,31 @@ $(function () {
          * the use of Jasmine's beforeEach and asynchronous done() function.
          */
         it('should have at least one feed entry', function (done) {
-            expect($('.feed').children().length).not.toBe(0);
+            expect($('.feed .entry').children().length).not.toBe(0);
             done();
         });
     });
     /* New Feed Selection suite - async */
     describe('New Feed Selection', function () {
-
-        /*Load an initial feed, it requires 2 different feeds */        
+        let oldFeed, newFeed;
+        /*Load an initial feed, it requires 2 different feeds */
         beforeEach(function (done) {
             loadFeed(1, function () {
-                done();
-            })
+                oldFeed = $('.feed').html();
+                loadFeed(0, function () {
+                    newFeed = $('.feed').html();
+                    done();
+                });
+            });
         });
 
         /* Test that ensures when a new feed is loaded
          * by the loadFeed function that the content actually changes.
         */
 
-        it('content should change', function(done){
-            const oldFeed = $('.feed').html();
-            loadFeed(0, function () {
-                expect($('.feed').html()).not.toBe(oldFeed);
-                done();
-            })
+        it('content should change', function (done) {
+            expect(newFeed).not.toBe(oldFeed);
+            done();
         });
     });
 
