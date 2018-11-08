@@ -69,12 +69,11 @@ $(function () {
          */
         it('visibility changes with click', function () {
             const menuIcon = $('.menu-icon-link');
-            let currentState = $('body').hasClass('menu-hidden');
+            const currentState = $('body').hasClass('menu-hidden');
             menuIcon.click();
-            expect($('body').hasClass('menu-hidden')).toBe(!currentState);
-            currentState = $('body').hasClass('menu-hidden');
+            expect($('body').hasClass('menu-hidden')).not.toBe(currentState);
             menuIcon.click();
-            expect($('body').hasClass('menu-hidden')).toBe(!currentState);
+            expect($('body').hasClass('menu-hidden')).toBe(currentState);
         });
 
     });
